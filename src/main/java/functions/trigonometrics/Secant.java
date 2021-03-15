@@ -18,4 +18,9 @@ public class Secant extends Function {
     public double comp(double theta) throws UnreachableResultException {
         return Secant.compSec(theta, this.accuracy);
     }
+
+    @Override
+    public String toString(){
+        return "sec(x)";
+    }
 }

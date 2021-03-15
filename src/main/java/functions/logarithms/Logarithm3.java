@@ -18,4 +18,9 @@ public class Logarithm3 extends Function {
     public double comp(double theta) throws UnreachableResultException{
         return Logarithm3.compLog3(theta, this.accuracy);
     }
+
+    @Override
+    public String toString(){
+        return "log3(x)";
+    }
 }

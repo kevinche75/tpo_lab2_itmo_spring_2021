@@ -18,4 +18,9 @@ public class Logarithm2 extends Function {
     public double comp(double theta) throws UnreachableResultException{
         return Logarithm2.compLog2(theta, this.accuracy);
     }
+
+    @Override
+    public String toString(){
+        return "log2(x)";
+    }
 }

@@ -17,16 +17,16 @@ public class LogarithmNatural extends Function {
             throw new UnreachableResultException("The accuracy below zero");
         }
         double result = 0;
-        double step = (theta - 1)/(theta + 1);
+        double multiplier = (theta - 1)/(theta + 1);
+        double step = multiplier * 2;
         int i;
-        for (i = 1; step > accuracy && i != Integer.MAX_VALUE; i+=2){
-            result += 1/(float) i*step;
-            if (!Double.isFinite(result) || !Double.isFinite(step)){
+        for (i = 1; Math.abs(step) > accuracy && i != Integer.MAX_VALUE-2; i+=2){
+            step = 2/(float) (i) * Math.pow(multiplier, i);
+            result += step;
+            if (!Double.isFinite(result) || !Double.isFinite(multiplier)){
                 throw new UnreachableResultException("Can't reach the accuracy");
             }
-            step *=step*step;
         }
-        result *=2;
         if (i == Integer.MAX_VALUE || !Double.isFinite(result)){
             throw new UnreachableResultException("Can't reach the accuracy");
         }
@@ -36,5 +36,10 @@ public class LogarithmNatural extends Function {
     @Override
     public double comp(double theta) throws UnreachableResultException {
         return LogarithmNatural.compLogN(theta, this.accuracy);
+    }
+
+    @Override
+    public String toString(){
+        return "logN(x)";
     }
 }

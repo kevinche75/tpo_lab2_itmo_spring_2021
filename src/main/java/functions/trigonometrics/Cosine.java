@@ -34,4 +34,9 @@ public class Cosine extends Function {
     public double comp(double theta) throws UnreachableResultException {
         return Cosine.compCos(theta, this.accuracy);
     }
+
+    @Override
+    public String toString(){
+        return "cos(x)";
+    }
 }

@@ -18,4 +18,9 @@ public class Cosecant extends Function {
     public double comp(double theta) throws UnreachableResultException {
         return Cosecant.compCsc(theta, this.accuracy);
     }
+
+    @Override
+    public String toString(){
+        return "csc(x)";
+    }
 }

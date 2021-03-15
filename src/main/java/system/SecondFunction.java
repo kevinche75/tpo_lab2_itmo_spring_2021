@@ -1,4 +1,4 @@
-package System;
+package system;
 
 import exceptions.UnreachableResultException;
 import functions.Function;
@@ -23,8 +23,13 @@ public class SecondFunction extends Function {
     }
 
     public double comp(double x) throws UnreachableResultException {
-        if (RangeValueService.checkRangeValueSecondFunction(x))
+        if (RangeValueService.checkRangeValueSecondFunction(x, accuracy))
             throw new UnreachableResultException("X doesn't math the range of acceptable values");
         return (log10.comp(x) + log3.comp(x)) * log2.comp(x) / logN.comp(x) + log5.comp(x) + log5.comp(x);
+    }
+
+    @Override
+    public String toString(){
+        return "(log10(x)+log3(x))*log2(x)/logN(x)+log5(x)+log5(x)";
     }
 }

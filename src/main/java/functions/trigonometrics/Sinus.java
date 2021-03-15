@@ -17,4 +17,9 @@ public class Sinus extends Function {
     public double comp(double theta) throws UnreachableResultException {
         return Sinus.compSin(theta, this.accuracy);
     }
+
+    @Override
+    public String toString(){
+        return "sin(x)";
+    }
 }

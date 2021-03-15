@@ -1,8 +1,9 @@
 package functions.trigonometrics;
 
 import exceptions.UnreachableResultException;
+import functions.Function;
 
-public class Cosine {
+public class Cosine extends Function {
 
     public static double compCos(double theta, double accuracy) throws UnreachableResultException {
         if (accuracy < 0){
@@ -23,5 +24,10 @@ public class Cosine {
             }
         }
         return result;
+    }
+
+    @Override
+    public double comp(double theta) throws UnreachableResultException {
+        return Cosine.compCos(theta, this.accuracy);
     }
 }

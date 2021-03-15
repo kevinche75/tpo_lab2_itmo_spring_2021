@@ -1,8 +1,9 @@
 package functions.logarithms;
 
 import exceptions.UnreachableResultException;
+import functions.Function;
 
-public class LogarithmNatural {
+public class LogarithmNatural extends Function {
 
     public static double compLogN(double theta, double accuracy) throws UnreachableResultException {
         if (theta <= 0){
@@ -26,5 +27,10 @@ public class LogarithmNatural {
             throw new UnreachableResultException("Can't reach the accuracy");
         }
         return result;
+    }
+
+    @Override
+    public double comp(double theta) throws UnreachableResultException {
+        return LogarithmNatural.compLogN(theta, this.accuracy);
     }
 }

@@ -5,6 +5,10 @@ import utils.TransformationService;
 
 public class Sinus extends Function {
 
+    public Sinus(double accuracy){
+        super(accuracy);
+    }
+
     public static double compSin(double theta, double accuracy) throws UnreachableResultException {
         return TransformationService.transformSinToCos(theta, accuracy);
     }

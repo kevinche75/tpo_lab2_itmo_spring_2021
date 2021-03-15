@@ -6,10 +6,8 @@ import utils.TransformationService;
 
 public class Cosecant extends Function {
 
-    private double accuracy;
-
     public Cosecant(double accuracy){
-        this.accuracy = accuracy;
+        super(accuracy);
     }
 
     public static double compCsc(double theta, double accuracy) throws UnreachableResultException {

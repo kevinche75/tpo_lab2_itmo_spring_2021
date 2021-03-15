@@ -6,6 +6,10 @@ import utils.TransformationService;
 
 public class Secant extends Function {
 
+    public Secant(double accuracy){
+        super(accuracy);
+    }
+
     public static double compSec(double theta, double accuracy) throws UnreachableResultException {
         return TransformationService.transformCosToSec(theta, accuracy);
     }

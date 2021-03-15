@@ -5,6 +5,10 @@ import functions.Function;
 
 public class Cosine extends Function {
 
+    public Cosine(double accuracy){
+        super(accuracy);
+    }
+
     public static double compCos(double theta, double accuracy) throws UnreachableResultException {
         if (accuracy < 0){
             throw new UnreachableResultException("The accuracy below zero");

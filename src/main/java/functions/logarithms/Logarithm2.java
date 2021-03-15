@@ -6,6 +6,10 @@ import utils.TransformationService;
 
 public class Logarithm2 extends Function {
 
+    public Logarithm2(double accuracy){
+        super(accuracy);
+    }
+
     public static double compLog2(double theta, double accuracy) throws UnreachableResultException {
         return TransformationService.transformLogNToLogK(theta, accuracy, 2);
     }

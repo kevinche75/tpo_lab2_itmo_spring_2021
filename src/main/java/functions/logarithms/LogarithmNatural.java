@@ -5,6 +5,10 @@ import functions.Function;
 
 public class LogarithmNatural extends Function {
 
+    public LogarithmNatural(double accuracy){
+        super(accuracy);
+    }
+
     public static double compLogN(double theta, double accuracy) throws UnreachableResultException {
         if (theta <= 0){
             throw new UnreachableResultException("Theta must be > 0 to calculate logarithm");

@@ -14,8 +14,7 @@ public class Cosine extends Function {
             throw new UnreachableResultException("The accuracy below zero");
         }
         double theta_norm = Math.abs(theta);
-        String[] parts = String.valueOf(theta_norm/Math.PI/2).split("[.]");
-        theta_norm -= Double.parseDouble(parts[0])*2*Math.PI;
+        theta_norm -= Math.floor(theta_norm/Math.PI/2)*2*Math.PI;
         double result = 1;
         double step = 1;
         int i;
@@ -26,6 +25,9 @@ public class Cosine extends Function {
             } else {
                 result += step;
             }
+        }
+        if (!Double.isFinite(result) || i == Integer.MAX_VALUE-1){
+            throw new UnreachableResultException("Too many iterations");
         }
         return result;
     }

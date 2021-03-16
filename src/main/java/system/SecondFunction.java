@@ -7,11 +7,11 @@ import utils.RangeValueService;
 
 public class SecondFunction extends Function {
 
-    private LogarithmNatural logN;
-    private Logarithm2 log2;
-    private Logarithm3 log3;
-    private Logarithm5 log5;
-    private Logarithm10 log10;
+    public LogarithmNatural logN;
+    public Logarithm2 log2;
+    public Logarithm3 log3;
+    public Logarithm5 log5;
+    public Logarithm10 log10;
 
     public SecondFunction(double accuracy){
         super(accuracy);

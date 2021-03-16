@@ -32,7 +32,6 @@ public class CSVWriter implements AutoCloseable{
                 y = function.comp(x);
                 } catch (UnreachableResultException e) {
                 y = Double.NaN;
-                System.out.println(e);
             }
             fileWriter.write(x + "," + y + "\n");
         }

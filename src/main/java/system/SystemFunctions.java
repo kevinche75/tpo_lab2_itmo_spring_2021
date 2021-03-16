@@ -3,12 +3,12 @@ package system;
 import exceptions.UnreachableResultException;
 import functions.Function;
 
-public class System extends Function {
+public class SystemFunctions extends Function {
 
-    private FirstFunction firstFunction;
-    private SecondFunction secondFunction;
+    public FirstFunction firstFunction;
+    public SecondFunction secondFunction;
 
-    public System(double accuracy){
+    public SystemFunctions(double accuracy){
         super(accuracy);
         firstFunction = new FirstFunction(accuracy);
         secondFunction = new SecondFunction(accuracy);

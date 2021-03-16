@@ -9,10 +9,6 @@ public class RangeValueService {
     }
 
     public static boolean checkRangeValueSecondFunction(double theta, double accuracy){
-        if (abs(theta - 1) <= accuracy){
-            System.out.println(abs(theta - 1));
-            System.out.println(abs(theta - 1) <= accuracy);
-        }
         return  abs(theta - 1) <= accuracy;
     }
 }

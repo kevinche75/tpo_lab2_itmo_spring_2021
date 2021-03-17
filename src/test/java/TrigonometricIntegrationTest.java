@@ -21,34 +21,65 @@ public class TrigonometricIntegrationTest {
 
     private static final double accuracy = 10e-5;
 
-    static Stream<Arguments> valuesRangeProvider() {
+    static Stream<Arguments> valuesRangeProviderCsc() {
         return Stream.of(
-                arguments(18.972555932820416),
-                arguments(19.600874463820418),
-                arguments(20.22919299482042),
-                arguments(20.85751152582042),
-                arguments(21.485830056820422),
-                arguments(22.114148587820424),
-                arguments(22.742467118820425),
-                arguments(23.370785649820426),
-                arguments(23.999104180820428),
-                arguments(24.62742271182043),
-                arguments(25.25574124282043),
-                arguments(25.884059773820432),
-                arguments(26.512378304820434),
-                arguments(27.140696835820435),
-                arguments(27.769015366820437),
-                arguments(28.397333897820438),
-                arguments(29.02565242882044),
-                arguments(29.65397095982044),
-                arguments(30.282289490820443),
-                arguments(30.910608021820444)
-        );
+                arguments(-3.0732733228718345),
+                arguments(-3.004954992153876),
+                arguments(-2.9366366614),
+                arguments(-2.868318330717959),
+                //first partition
+                arguments(-2.8),
+                arguments(-2.6399999999999997),
+                arguments(-2.4799999999999995),
+                arguments(-2.3199999999999994),
+                arguments(-2.1599999999999993),
+                //second partition
+                arguments(-1.82),
+                arguments(-1.6400000000000001),
+                arguments(-1.4600000000000002),
+                arguments(-1.2800000000000002),
+                //third partition
+                arguments(-1.1),
+                arguments(-0.9600000000000001),
+                arguments(-0.8200000000000001),
+                arguments(-0.68),
+                arguments(-0.54),
+                //forth partition
+                arguments(-0.4),
+                arguments(-0.32),
+                arguments(-0.24),
+                arguments(-0.15999999999999998),
+                arguments(-0.07999999999999997),
+                //fifth partition
+                arguments(0.06831853671795865),
+                arguments(0.1366370634359173),
+                arguments(0.20495559015387596),
+                arguments(0.2732741168718346),
+                //sixth partition
+                arguments(0.3415926435897933),
+                arguments(0.43327411487183465),
+                arguments(0.5249555861538759),
+                arguments(0.6166370574359172),
+                arguments(0.7083185287179585),
+                //seventh partition
+                arguments(0.8),
+                arguments(1.12),
+                arguments(1.44),
+                arguments(1.7599999999999998),
+                arguments(2.0799999999999996),
+                //ninth partition
+                arguments(2.5),
+                arguments(2.6283185107179587),
+                arguments(2.7566370214359175),
+                arguments(2.8849555321538762),
+                arguments(3.013274042871835)
+                //tenth partition
+                );
     }
 
     @DisplayName("Cosecant: Integration Test with Mocks")
     @ParameterizedTest(name = "{index}: Check range of values, x = {0}")
-    @MethodSource("valuesRangeProvider")
+    @MethodSource("valuesRangeProviderCsc")
     void test_0(Double value) throws UnreachableResultException {
         try (MockedStatic<Sinus> sin = mockStatic(Sinus.class)){
             sin.when(() -> Sinus.compSin(value, accuracy)).thenReturn(sin(value));
@@ -56,19 +87,100 @@ public class TrigonometricIntegrationTest {
         }
     }
 
+    static Stream<Arguments> valuesRangeProviderSin(){
+        return Stream.of(
+                arguments(-6.283185307179586),
+                arguments(-5.654866776461628),
+                arguments(-5.026548245743669),
+                arguments(-4.39822971502571),
+                arguments(-3.7699111843077517),
+                arguments(-3.141592653589793),
+                arguments(-2.5132741228718345),
+                arguments(-1.8849555921538759),
+                arguments(-1.2566370614359172),
+                arguments(-0.6283185307179586),
+                arguments(0.0),
+                arguments(0.6283185307179586),
+                arguments(1.2566370614359172),
+                arguments(1.8849555921538759),
+                arguments(2.5132741228718345),
+                arguments(3.141592653589793),
+                arguments(3.7699111843077517),
+                arguments(4.39822971502571),
+                arguments(5.026548245743669),
+                arguments(5.654866776461628)
+                );
+    }
+
     @DisplayName("Sinus: Integration Test with Mocks")
     @ParameterizedTest(name = "{index}: Check range of values, x = {0}")
-    @MethodSource("valuesRangeProvider")
+    @MethodSource("valuesRangeProviderSin")
     void test_1(Double value) throws UnreachableResultException {
         try (MockedStatic<Cosine> cos = mockStatic(Cosine.class)){
-            cos.when(() -> Cosine.compCos(Math.PI/2 - value, accuracy)).thenReturn(cos(Math.PI/2 - value));
+            cos.when(() -> Cosine.compCos(PI/2 - value, accuracy)).thenReturn(Math.cos(Math.PI/2 - value));
             assertEquals(sin(value), Sinus.compSin(value, accuracy), accuracy);
         }
     }
 
+    static Stream<Arguments> valuesRangeProviderSec() {
+        return Stream.of(
+                arguments(-1.502476996076938),
+                arguments(-1.4341586653589795),
+                arguments(-1.3658403346051036),
+                arguments(-1.2975220039230626),
+                //first partition
+                arguments(-1.2292036732051033),
+                arguments(-1.0692036732051031),
+                arguments(-0.909203673205103),
+                arguments(-0.7492036732051028),
+                arguments(-0.5892036732051027),
+                //second partition
+                arguments(-0.2492036732051035),
+                arguments(-0.06920367320510357),
+                arguments(0.11079632679489637),
+                arguments(0.2907963267948963),
+                //third partition
+                arguments(0.47079632679489647),
+                arguments(0.6107963267948965),
+                arguments(0.7507963267948965),
+                arguments(0.8907963267948965),
+                arguments(1.0307963267948965),
+                //forth partition
+                arguments(1.1707963267948966),
+                arguments(1.2507963267948965),
+                arguments(1.3307963267948966),
+                arguments(1.4107963267948966),
+                arguments(1.4907963267948965),
+                //fifth partition
+                arguments(1.6391148635128552),
+                arguments(1.7074333902308139),
+                arguments(1.7757519169487725),
+                arguments(1.8440704436667312),
+                arguments(1.91238897038469),
+                //sixth partition
+                arguments(2.004070441666731),
+                arguments(2.0957519129487725),
+                arguments(2.187433384230814),
+                arguments(2.279114855512855),
+                arguments(2.3707963267948964),
+                //seventh partition
+                arguments(2.6907963267948967),
+                arguments(3.0107963267948965),
+                arguments(3.3307963267948963),
+                arguments(3.650796326794896),
+                arguments(4.070796326794897),
+                //ninth partition
+                arguments(4.199114837512855),
+                arguments(4.327433348230814),
+                arguments(4.455751858948773),
+                arguments(4.5840703696667315)
+                //tenth partition
+        );
+    }
+
     @DisplayName("Secant: Integration Test with Mocks")
     @ParameterizedTest(name = "{index}: Check range of values, x = {0}")
-    @MethodSource("valuesRangeProvider")
+    @MethodSource("valuesRangeProviderSec")
     void test_2(Double value) throws UnreachableResultException {
         try (MockedStatic<Cosine> cos = mockStatic(Cosine.class)){
             cos.when(() -> Cosine.compCos(value, accuracy)).thenReturn(cos(value));

@@ -19,7 +19,7 @@ public class TransformationService {
     }
 
     public static double transformSinToCsc(double theta, double accuracy) throws UnreachableResultException {
-        double divisor = transformSinToCos(theta, accuracy/100);
+        double divisor = transformSinToCos(theta, accuracy);
         if (abs(divisor) <= accuracy) throw new UnreachableResultException("Division by zero");
         return 1/divisor;
     }

@@ -9,6 +9,7 @@ import system.FirstFunction;
 import system.SecondFunction;
 import system.SystemFunctions;
 
+import java.io.IOException;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,7 +26,7 @@ public class SystemFunctionsIntegrationTest {
     static SystemFunctions system;
 
     @BeforeAll
-    static void setUp() throws UnreachableResultException {
+    static void setUp() throws UnreachableResultException, IOException {
         firstFunctionMock = mock(FirstFunction.class);
         secondFunctionMock = mock(SecondFunction.class);
         when(firstFunctionMock.comp(-6.283185307179586)).thenThrow(new UnreachableResultException(""));

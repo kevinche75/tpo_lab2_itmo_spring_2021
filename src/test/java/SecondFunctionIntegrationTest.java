@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import system.SecondFunction;
+import system.SystemFunctions;
 
 import java.util.stream.Stream;
 
@@ -25,6 +26,7 @@ public class SecondFunctionIntegrationTest {
     static Logarithm5 log5;
     static Logarithm10 log10;
     static LogarithmNatural logN;
+    static SystemFunctions system;
 
     @BeforeAll
     static void setUp() {
@@ -33,12 +35,14 @@ public class SecondFunctionIntegrationTest {
         log5 = mock(Logarithm5.class);
         log10 = mock(Logarithm10.class);
         logN = mock(LogarithmNatural.class);
+        system = new SystemFunctions(accuracy);
         secondFunction = new SecondFunction(accuracy);
         secondFunction.log2 = log2;
         secondFunction.log3 = log3;
         secondFunction.log5 = log5;
         secondFunction.log10 = log10;
         secondFunction.logN = logN;
+        system.secondFunction = secondFunction;
     }
 
     static Stream<Arguments> valuesRangeProvider(){
@@ -93,5 +97,17 @@ public class SecondFunctionIntegrationTest {
     @MethodSource("withExceptionsProvider")
     void test_1(double value, boolean sinE) throws UnreachableResultException {
         assertThrows(UnreachableResultException.class, () -> secondFunction.comp(value));
+    }
+
+    @DisplayName("Integration Test: System")
+    @ParameterizedTest(name = "{index}: Check values in system, x = {0}")
+    @MethodSource("valuesRangeProvider")
+    void test_3(double value, double expected) throws UnreachableResultException{
+        when(secondFunction.logN.comp(value)).thenReturn(log(value));
+        when(secondFunction.log2.comp(value)).thenReturn(log(value)/log(2));
+        when(secondFunction.log3.comp(value)).thenReturn(log(value)/log(3));
+        when(secondFunction.log5.comp(value)).thenReturn(log(value)/log(5));
+        when(secondFunction.log10.comp(value)).thenReturn(log(value)/log(10));
+        assertEquals(expected, system.comp(value), accuracy);
     }
 }

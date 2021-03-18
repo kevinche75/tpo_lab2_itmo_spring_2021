@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import system.FirstFunction;
+import system.SystemFunctions;
 
 import java.util.stream.Stream;
 
@@ -27,6 +28,7 @@ public class FirstFunctionIntegrationTest {
     static Sinus sin;
     static Cosecant csc;
     static Secant sec;
+    static SystemFunctions sys;
 
     @BeforeAll
     static void setUp() {
@@ -39,6 +41,8 @@ public class FirstFunctionIntegrationTest {
         firstFunction.sin = sin;
         firstFunction.sec = sec;
         firstFunction.csc = csc;
+        sys = new SystemFunctions(accuracy);
+        sys.firstFunction = firstFunction;
     }
 
     static Stream<Arguments> valuesRangeProvider(){
@@ -101,5 +105,17 @@ public class FirstFunctionIntegrationTest {
             when(firstFunction.sec.comp(value)).thenThrow(new UnreachableResultException(""));
         }
         assertThrows(UnreachableResultException.class, () -> firstFunction.comp(value));
+    }
+
+    @DisplayName("Integration Test with Mocks: System")
+    @ParameterizedTest(name = "{index}: Check range of values, x = {0}")
+    @MethodSource("valuesRangeProvider")
+    void test_2(double value, double expected) throws UnreachableResultException {
+        value-=2*Math.PI;
+        when(firstFunction.sin.comp(value)).thenReturn(sin(value));
+        when(firstFunction.cos.comp(value)).thenReturn(cos(value));
+        when(firstFunction.csc.comp(value)).thenReturn(1/sin(value));
+        when(firstFunction.sec.comp(value)).thenReturn(1/cos(value));
+        assertEquals(expected, sys.comp(value), accuracy);
     }
 }

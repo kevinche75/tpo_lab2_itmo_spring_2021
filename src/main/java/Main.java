@@ -19,8 +19,8 @@ public class Main {
 //        FirstFunction system = new FirstFunction(accuracy);
 //        SecondFunction system = new SecondFunction(accuracy);
 //        Logarithm10 system = new Logarithm10(accuracy);
-        Function system = new LogarithmNatural(accuracy);
-        CSVWriter writer = new CSVWriter("/home/kevinche/Desktop/Unik/ТПО/logN.csv", system, false);
-        writer.writeRangeComputations(0, 4*Math.PI, 0.1);
+//        Function system = new LogarithmNatural(accuracy);
+//        CSVWriter writer = new CSVWriter("/home/kevinche/Desktop/Unik/ТПО/logN.csv", system, false);
+//        writer.writeRangeComputations(0, 4*Math.PI, 0.1);
     }
 }
